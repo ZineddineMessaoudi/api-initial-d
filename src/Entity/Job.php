@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=JobRepository::class)
@@ -17,6 +18,7 @@ class Job
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("job")
      */
     private $id;
 
@@ -31,6 +33,7 @@ class Job
      *     type="string",
      *     message="Your name must be a string"*
      * )
+     * @Groups("job")
      */
     private $name;
 
