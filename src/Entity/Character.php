@@ -6,6 +6,7 @@ use App\Repository\CharacterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CharacterRepository::class)
@@ -22,21 +23,56 @@ class Character
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Firstname is required")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your firstname must be at least {{ limit }} characters long",
+     *      maxMessage = "Your firstname cannot be longer than {{ limit }} characters"
+     * )
+     * @Assert\Type(
+     *     type="string",
+     *     message="Your firstname must be a string"
+     * )
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Lastname is required")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your lastname must be at least {{ limit }} characters long",
+     *      maxMessage = "Your lastname cannot be longer than {{ limit }} characters"
+     * )
+     * @Assert\Type(
+     *     type="string",
+     *     message="Your lastname must be a string"
+     * )
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotBlank(message="Age is required")
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 100,
+     *      minMessage = "Your age must be at least {{ limit }} years",
+     *      maxMessage = "Your age cannot be longer than {{ limit }} years"
+     * )
+     * @Assert\Type(
+     *     type="integer",
+     *     message="Your age must be an integer"
+     * )
      */
     private $age;
 
     /**
      * @ORM\ManyToMany(targetEntity=Job::class, inversedBy="characters")
+     * @ORM\JoinTable(name="character_job")
+     * @Assert\NotBlank(message="Job is required")
      */
     private $job;
 

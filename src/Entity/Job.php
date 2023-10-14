@@ -6,6 +6,7 @@ use App\Repository\JobRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=JobRepository::class)
@@ -21,11 +22,22 @@ class Job
 
     /**
      * @ORM\Column(type="string", length=50, unique=true)
+     * @Assert\NotBlank(message="Name is required")
+     * @Assert\Length(
+     *      max = 50,
+     *      maxMessage = "Your name cannot be longer than {{ limit }} characters"
+     * )
+     * @Assert\Type(
+     *     type="string",
+     *     message="Your name must be a string"*
+     * )
      */
     private $name;
 
     /**
      * @ORM\ManyToMany(targetEntity=Character::class, mappedBy="job")
+     * @ORM\JoinTable(name="job_character")
+     * @Assert\NotBlank(message="Characters is required")
      */
     private $characters;
 

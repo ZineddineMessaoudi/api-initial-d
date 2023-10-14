@@ -6,6 +6,7 @@ use App\Repository\CarRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CarRepository::class)
@@ -21,16 +22,35 @@ class Car
 
     /**
      * @ORM\Column(type="string", length=50, unique=true)
+     * @Assert\NotBlank(message="Name is required")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your name cannot be longer than {{ limit }} characters"
+     * )
+     * @Assert\Type(
+     *     type="string",
+     *     message="Your name must be a string"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(message="Release date is required")
+     * @Assert\Date
+     * @Assert\Type(
+     *     type="date",
+     *     message="Your release date must be a date"
+     * )
      */
     private $release_date;
 
     /**
      * @ORM\ManyToMany(targetEntity=Character::class, mappedBy="car")
+     * @ORM\JoinTable(name="car_character")
+     * @Assert\NotBlank(message="Characters is required")
      */
     private $characters;
 

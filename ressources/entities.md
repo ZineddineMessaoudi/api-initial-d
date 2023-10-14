@@ -22,3 +22,10 @@ varchar(50) | not null | unique
 varchar(50) | not null | unique
 ## realease_date
 date | not null
+
+# Users
+
+## pseudo
+varchar(50) | not null | unique
+## password
+varchar(50) | not null
