@@ -1,0 +1,2 @@
+DELETE http://localhost:8000/api/jobs/delete/6 HTTP/1.1
+Content-Type: application/json

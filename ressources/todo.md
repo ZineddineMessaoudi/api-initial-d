@@ -17,10 +17,10 @@ Make all entities needed, with constraints and relations
 | `/jobs/create`  | `POST` | `JobController` | `create` | Create job |  Create a job | done |
 | `/cars/create` | `POST` | `CarController` | `create` | Create car | Create a car | not done |
 | `/cars/update` | `PUT` | `CarController` | `update` | Update car | Update a car | not done |  
-| `/jobs/update` | `PUT` | `JobController` | `update` | Update job | Update a job | not done |
+| `/jobs/update` | `PUT` | `JobController` | `update` | Update job | Update a job | done |
 | `/characters/update` | `PUT` | `CharacterController`| `update` | Update character | create a character | not done |
 | `/cars/delete` | `DELETE` | `CarController` | `delete` | Delete car | Delete a car | not done |  
-| `/jobs/delete` | `DELETE` | `JobController` | `delete` | Delete job | Delete a job | not done |
+| `/jobs/delete` | `DELETE` | `JobController` | `delete` | Delete job | Delete a job | done |
 | `/characters/delete` | `DELETE` | `CharacterController`| `delete` | Delete character | Delete a character | not done |  
 
 ## create and Update Form -- TODO
